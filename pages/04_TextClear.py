@@ -86,11 +86,12 @@ class ConvAutoencoder(nn.Module):
 def load_model():
     model = ConvAutoencoder()
     model.load_state_dict(torch.load('data/weights200epoch.pt'))    
+    model.eval()
     return model
 
 model = load_model()
 
-model.eval()
+
 c1, c2 = st.columns(2) 
 c2.image('data/denoise.gif')
 c1.write('''
