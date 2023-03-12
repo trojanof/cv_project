@@ -81,8 +81,15 @@ class ConvAutoencoder(nn.Module):
         latent, indicies = self.encode(x)
         out = self.decode(latent, indicies)      
         return out
-model = ConvAutoencoder()
-model.load_state_dict(torch.load('data/weights200epoch.pt'))
+
+@st.cache
+def load_model():
+    model = ConvAutoencoder()
+    model.load_state_dict(torch.load('data/weights200epoch.pt'))    
+    return model
+
+model = load_model()
+
 model.eval()
 c1, c2 = st.columns(2) 
 c2.image('data/denoise.gif')
