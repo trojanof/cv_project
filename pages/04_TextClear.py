@@ -82,7 +82,7 @@ class ConvAutoencoder(nn.Module):
         out = self.decode(latent, indicies)      
         return out
 
-@st.cache_data
+@st.cache_resource
 def load_model():
     model = ConvAutoencoder()
     model.load_state_dict(torch.load('data/weights200epoch.pt'))    
